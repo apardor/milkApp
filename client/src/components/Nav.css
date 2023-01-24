@@ -1,0 +1,9 @@
+.nav{
+    width: 100vw;
+    background-color: #ffffff;
+    text-align: center;
+    color: #ce88a0;
+    padding: 1rem 0;
+    font-size: 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+}

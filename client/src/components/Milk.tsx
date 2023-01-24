@@ -1,32 +1,63 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
+import { IState, IMilk } from '../models/IMilk';
+import './Milk.css'
+import milkImage from '../assets/milk.png' 
 
 
 const Milk = () => {
 
-    const [backendData, setbackendData ] = useState([]);    
-
-    const milk = async() => {
-        try{
-             await axios.get('/api/milk')
-            .then( res => setbackendData(res.data))
-        }catch (error){
-            console.log(error);
-        }
+    const initialState = {
+      loading: true,
+      count: 0,
+      results: [] as IMilk[],
+      errorMsg: "",
     }
 
+    const [backendData, setbackendData ] = useState<IState>(initialState);    
 
-    console.log(backendData, 'here is data with axios');
-    
-    
     useEffect(()=>{
-        milk();
-    },[])
-    
+      setbackendData({...backendData, loading: true})
+      axios.get('/api/milk')
+      .then((res) => setbackendData({
+          ...backendData,
+          loading: false,
+          count: res.data.count,
+          results: res.data.results
+      }))
+      .catch(err => setbackendData({
+          ...backendData,
+          loading: false,
+          errorMsg: err.message
+      }))
+  }, []);
+
+  const {loading, count, results, errorMsg } = backendData;
 
 
   return (
-    <div>Milk</div>
+    <section className='main__section'>
+       {errorMsg && (<p>{errorMsg}</p>)}
+      {loading && <h1>Loading... </h1>}
+      <p>{count} products</p>
+      <ul className='card__grid'> 
+        {results.map(el=> {
+          return(<>
+          <li key={el.id.toString()} className='card'>
+            <div className='card__image'>
+            <img src={milkImage} alt='milkbox' className='image'></img>
+            </div>
+            <div className='card__container'>
+            <h3>{el.name}</h3>
+            <p>{el.type}</p>
+            <p>{el.storage}</p>
+            </div>
+          </li>
+          </>
+          )
+        })}
+      </ul>  
+    </section>
   )
 }
 

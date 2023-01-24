@@ -7,6 +7,7 @@ export interface IMilk {
 
 export interface IState{
     loading: boolean,
-    milk: IMilk[],
+    count: number,
+    results: IMilk[],
     errorMsg: string,
 }
