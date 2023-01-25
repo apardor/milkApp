@@ -1,25 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import './SearchBarFilter.css'
+import './SearchBar.css'
 
-const SearchBarFilter = () => {
+const SearchBar = () => {
+
+    const [search, setSearch] = useState('');
 
     const handleSubmit = (e: React.SyntheticEvent) =>  e.preventDefault();
-    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {    }
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearch(e.target.value)
+    }
+
+    console.log(search);
+    
+
 
   return (
-    <div className='search--filter__container'>
+    <div>
         <form className='search' onSubmit={handleSubmit}>
-        <FontAwesomeIcon className='search__icon' icon={faMagnifyingGlass} />
+        <FontAwesomeIcon className='search__icon' type='submit 'icon={faMagnifyingGlass} />
             <input className='search__input' type='search' onChange={handleSearchChange} placeholder="Search" />
         </form>
-
-        <div className='filter'>
-        Filter
-        </div>
     </div>
   )
 }
 
-export default SearchBarFilter
+export default SearchBar

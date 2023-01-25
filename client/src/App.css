@@ -6,3 +6,12 @@ body{
     width: 60vw;
     margin: auto;
 }
+
+.search--filter__section{
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+

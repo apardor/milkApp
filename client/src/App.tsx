@@ -1,7 +1,8 @@
 import './App.css'
+import Filter from './components/Filter';
 import Milk from './components/Milk';
 import Nav from './components/Nav';
-import SearchBarFilter from './components/SearchBarFilter';
+import SearchBar from './components/SearchBar';
 
 
 function App() {
@@ -9,7 +10,10 @@ function App() {
     <div className="App">
       <Nav />
       <section className='main__section'> 
-      <SearchBarFilter />
+        <section className='search--filter__section'>
+        <SearchBar />
+        <Filter />
+        </section>
       <Milk />
       </section>
     </div>
