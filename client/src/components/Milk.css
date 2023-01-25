@@ -1,8 +1,3 @@
-.main__section{
-    width: 60vw;
-    margin: auto;
-}
-
 ul.card__grid {
     display: grid;
     flex-wrap: wrap;

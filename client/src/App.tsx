@@ -1,14 +1,17 @@
 import './App.css'
-import Filter from './components/Filter';
 import Milk from './components/Milk';
 import Nav from './components/Nav';
+import SearchBarFilter from './components/SearchBarFilter';
+
 
 function App() {
   return (
     <div className="App">
       <Nav />
-      <Filter />
+      <section className='main__section'> 
+      <SearchBarFilter />
       <Milk />
+      </section>
     </div>
   )
 }
