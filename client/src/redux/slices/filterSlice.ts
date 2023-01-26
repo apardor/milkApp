@@ -3,6 +3,7 @@ import { IMilkFilter } from "../../models/IMilk";
 
 const initialState: IMilkFilter = {
     filter: '',
+    type: '',
 } 
 
 export const filterSlice = createSlice({
@@ -12,9 +13,12 @@ export const filterSlice = createSlice({
         setFilter: (state, action: PayloadAction<string>) => {
             state.filter = action.payload
         },
+        setCheckBox: (state, action: PayloadAction<string>) => {
+            state.type = action.payload
+        }
     },
 })
 
-export const { setFilter } = filterSlice.actions
+export const { setFilter, setCheckBox } = filterSlice.actions
 
 export default filterSlice.reducer

@@ -4,6 +4,7 @@ import { IState, IMilk } from '../models/IMilk';
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import './Milk.css'
 import milkImage from '../assets/milk.png' 
+import Pagination from './Pagination';
 
 
 const Milk = () => {
@@ -16,6 +17,9 @@ const Milk = () => {
     }
   
     const [backendData, setbackendData ] = useState<IState>(initialState); 
+
+    const [currentPage , setCurrentPage] = useState<number>(1);
+    const [resultsPerPage , setresultsPerPage] = useState<number>(9);
 
     useEffect(()=>{
       setbackendData({...backendData, loading: true})
@@ -35,11 +39,24 @@ const Milk = () => {
 
   const {loading, count, results, errorMsg } = backendData;
 
-  const filterBy = useAppSelector((state) => state.milkFilter.filter);
+  const filterByQuery = useAppSelector((state) => state.milkFilter.filter);
+  const filterByCheckBox= useAppSelector((state) => state.milkFilter.type);
 
-  let res = results
+
+  const indexOfLastResult = currentPage * resultsPerPage;
+  const indexOfFirstPost = indexOfLastResult - resultsPerPage;
+  const currentResults = results.slice(indexOfFirstPost, indexOfLastResult);
+
+  const paginate = (pageNumber:number) => {
+    setCurrentPage(pageNumber)
+  }
+
+  let res = currentResults
       .filter((el) => 
-      filterBy ? el.name.includes(filterBy) || el.type.includes(filterBy) : true,
+      filterByQuery ? el.name.includes(filterByQuery) || el.type.includes(filterByQuery) : true,
+      )
+      .filter((el) => 
+      filterByCheckBox ? el.type.includes(filterByCheckBox) : true,
       )
       .map(el=> {
         return(<>
@@ -57,14 +74,16 @@ const Milk = () => {
         )          
       })
 
+
   return (
     <section className='main__section'>
        {errorMsg && (<p>{errorMsg}</p>)}
       {loading && <h1>Loading... </h1>}
-      <p>{res.length} products</p>
+      <p>{res.length} {count} products</p>
       <ul className='card__grid'> 
         {res}
       </ul>  
+      <Pagination resultsPerPage={resultsPerPage} totalResults={results.length} setCurrentPage={setCurrentPage} />
     </section>
   )
 }

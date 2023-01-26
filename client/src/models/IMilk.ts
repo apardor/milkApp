@@ -14,6 +14,17 @@ export interface IState{
 
 export interface IMilkFilter{
     filter: string,
+    type: string,
+}
+
+export interface IPaginationProps{
+    resultsPerPage: number,
+    totalResults: number,
+    setCurrentPage: any,
+}
+
+export interface IPageNumbers{
+    pageNumbers: number[],
 }
 
 export enum milkType{
@@ -27,8 +38,6 @@ export enum milkType{
     oat = "Oat milk",
     macadamia = "Macadamia milk",
     whole = "Whole milk",
-
-
 }
 
 
