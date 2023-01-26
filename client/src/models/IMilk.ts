@@ -12,6 +12,10 @@ export interface IState{
     errorMsg: string,
 }
 
+export interface IMilkFilter{
+    filter: string,
+}
+
 export enum milkType{
     cashew= "Cashew milk",
     pea =  "Pea milk",

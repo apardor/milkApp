@@ -12,7 +12,7 @@ Milk Store
 
 
 
-- :construction_worker: Front End built with Vite (React + TypeScript) / Backend built with Express + TypeScript
+- :construction_worker: Front End built with Vite (React + TypeScript + Redux) / Backend built with Express + TypeScript
 
 - :mailbox_with_mail: Data fetched with Axios
 

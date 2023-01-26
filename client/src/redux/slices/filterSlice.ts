@@ -1,14 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IMilkFilter } from "../../models/IMilk";
 
-const initialState = {
+const initialState: IMilkFilter = {
     filter: '',
-}
+} 
 
 export const filterSlice = createSlice({
-    name: 'milkSlice',
+    name: 'milkFilter',
     initialState,
     reducers: {
-        setFilter: (state, action) => {
+        setFilter: (state, action: PayloadAction<string>) => {
             state.filter = action.payload
         },
     },
