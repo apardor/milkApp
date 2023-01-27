@@ -17,7 +17,6 @@ const Milk = () => {
     }
   
     const [backendData, setbackendData ] = useState<IState>(initialState); 
-
     const [currentPage , setCurrentPage] = useState<number>(1);
     const [resultsPerPage , setresultsPerPage] = useState<number>(9);
 
@@ -47,9 +46,7 @@ const Milk = () => {
   const indexOfFirstPost = indexOfLastResult - resultsPerPage;
   const currentResults = results.slice(indexOfFirstPost, indexOfLastResult);
 
-  const paginate = (pageNumber:number) => {
-    setCurrentPage(pageNumber)
-  }
+
 
   let res = currentResults
       .filter((el) => 
@@ -79,7 +76,7 @@ const Milk = () => {
     <section className='main__section'>
        {errorMsg && (<p>{errorMsg}</p>)}
       {loading && <h1>Loading... </h1>}
-      <p>{res.length} {count} products</p>
+      <p>{res.length} products</p>
       <ul className='card__grid'> 
         {res}
       </ul>  
