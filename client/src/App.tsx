@@ -3,6 +3,8 @@ import Filter from './components/Filter';
 import Milk from './components/Milk';
 import Nav from './components/Nav';
 import SearchBar from './components/SearchBar';
+import { Route, Routes } from 'react-router-dom';
+import OneMilk from './components/OneMilk';
 
 
 function App() {
@@ -14,7 +16,10 @@ function App() {
         <SearchBar />
         <Filter />
         </section>
-      <Milk />
+        <Routes>
+          <Route path='/' element={<Milk />} />
+          <Route path='/milk/:id' element={<OneMilk />} />
+        </Routes>  
       </section>
     </div>
   )

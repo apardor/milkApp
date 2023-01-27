@@ -5,6 +5,7 @@ import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import './Milk.css'
 import milkImage from '../assets/milk.png' 
 import Pagination from './Pagination';
+import { Link } from 'react-router-dom';
 
 
 const Milk = () => {
@@ -55,18 +56,8 @@ const Milk = () => {
       )
       .map(el=> {
         return(<>
-        <li key={el.id.toString()} className='card' 
-          onClick={()=> {
-            (console.log(el._id))
-            axios.get('/api/milk/:id')
-            .then((res) => setbackendData({  
-                ...backendData,
-                loading: false,
-                results: res.data.milk
-            }))
-            
-          }     
-          }>
+        <Link to={`/milk/${el._id}`}>
+        <li key={el.id.toString()} className='card'>
           <div className='card__image'>
           <img src={milkImage} alt='milkbox' className='image'></img>
           </div>
@@ -76,6 +67,7 @@ const Milk = () => {
           <p>{el.storage}</p>
           </div>
         </li>
+        </Link>
         </>
         )          
       })

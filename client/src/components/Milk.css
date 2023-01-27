@@ -16,6 +16,12 @@ li.card{
     cursor: pointer;
 }
 
+
+ul a{
+    color: black;
+    text-decoration: none;
+}
+
 .card__image{
     background-color: #f6f6f6;
 }
