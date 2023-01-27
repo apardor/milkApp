@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 export interface IMilk {
+    _id: string;
     name: string;
     type: string;
     storage: number;
@@ -17,7 +18,7 @@ const MilkSchema = new Schema({
     id: String
 })
 
-const Milk = mongoose.model<IMilk>("milkDb", MilkSchema)
+const Milk = mongoose.model<IMilk>("milkdbs", MilkSchema)
 
 
 export default Milk;

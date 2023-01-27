@@ -23,11 +23,10 @@ const Milk = () => {
     useEffect(()=>{
       setbackendData({...backendData, loading: true})
       axios.get('/api/milk')
-      .then((res) => setbackendData({
+      .then((res) => setbackendData({  
           ...backendData,
           loading: false,
-          count: res.data.results.length,
-          results: res.data.results
+          results: res.data.milk
       }))
       .catch(err => setbackendData({
           ...backendData,
@@ -48,7 +47,7 @@ const Milk = () => {
 
 
 
-  let res = currentResults
+  let res = results
       .filter((el) => 
       filterByQuery ? el.name.includes(filterByQuery) || el.type.includes(filterByQuery) : true,
       )
