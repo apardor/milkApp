@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { IState, IMilk } from '../models/IMilk';
 import { useAppSelector, useAppDispatch } from '../redux/hooks'
 import './Milk.css'
@@ -46,7 +46,6 @@ const Milk = () => {
   const currentResults = results.slice(indexOfFirstPost, indexOfLastResult);
 
 
-
   let res = results
       .filter((el) => 
       filterByQuery ? el.name.includes(filterByQuery) || el.type.includes(filterByQuery) : true,
@@ -56,7 +55,18 @@ const Milk = () => {
       )
       .map(el=> {
         return(<>
-        <li key={el.id.toString()} className='card'>
+        <li key={el.id.toString()} className='card' 
+          onClick={()=> {
+            (console.log(el._id))
+            axios.get('/api/milk/:id')
+            .then((res) => setbackendData({  
+                ...backendData,
+                loading: false,
+                results: res.data.milk
+            }))
+            
+          }     
+          }>
           <div className='card__image'>
           <img src={milkImage} alt='milkbox' className='image'></img>
           </div>

@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 export interface IMilk {
-    _id: string;
     name: string;
     type: string;
     storage: number;
@@ -11,7 +10,6 @@ export interface IMilk {
 }
 
 const MilkSchema = new Schema({
-    _id: String,
     name: String,
     type: String,
     storage: Number,

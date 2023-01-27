@@ -1,4 +1,5 @@
 export interface IMilk {
+    _id: string;
     name: string;
     type: string;
     storage: number;
